@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery SPA</title>
+  <style>
+
+      body {
+          width: 600px;
+          margin: auto;
+      }
+
+      #contact {
+          background: grey;
+          padding: 1em 2em;
+          position: relative;
+      }
+      .js #contact {
+          position: absolute;
+          top: 0;
+          width: inherit;
+          /*display: none;*/
+      }
+      #contact h2{
+          margin-top: 0;
+      }
+      #contact ul{
+          padding: 0;
+      }
+      span.close {
+          cursor: pointer;
+      }
+  </style>
+  <script src="./jquery.min.js"></script>
+</head>
+<body>
+    <article>
+        <p>
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+        </p>
+        <p>
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+            this is dummy text this is dummy text
+        </p>
+    <button>contact</button>
+    </article>
+    <div id="contact">
+        <form>
+            <ul>
+                <li>
+                    Name : <input type="text"/><br/>
+                </li>
+                <li>
+                    Age : <input type="number"/><br/>
+                </li>
+                <li>
+                    Password : <input type="password"/><br/>
+                </li>
+            </ul>
+        </form>
+    </div>
+
+
+<script>
+
+    var contactForm = {
+
+        container: $('#contact'),
+
+        config: {
+            effect: 'slideToggle'
+        },
+
+        init: function () {
+            $("<button></button>",{
+                text: 'contact'
+            })
+                    .insertAfter('article:first')
+                    .on('click', this.show)
+        },
+        show: function () {
+//            contactForm.close.call(contactForm.container);
+            contactForm.container.slideToggle(500)
+        },
+        close: function () {
+            var $this = $(this);
+            if($this.find('span.close').length) return;
+            $('<span></span>',{
+                text: 'X',
+                class: 'close'
+            })
+                    .prependTo(this)
+                    .on('click', function () {
+                        $this.hide();
+                    })
+
+        }
+
+    };
+
+    contactForm.init({
+        effect: 'fadeToggle',
+        speed: 200
+    });
+</script>
+</body>
+</html>
